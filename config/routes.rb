@@ -3,11 +3,16 @@ Timesystem::Application.routes.draw do
 
   devise_for :users
 
+  devise_scope :user do
+    get "signin", :to => "devise/sessions#new"
+    get "signup", :to => "devise/registrations#new"
+  end
+
   resources :time_entries
 
   resources :accounts
 
-  get "home/index"
+  root :to => "users#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
