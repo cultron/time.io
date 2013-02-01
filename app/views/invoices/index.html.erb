@@ -1,8 +1,8 @@
-<h1>Listing invoices</h1>
+<h1>Invoices</h1>
 
-<table>
+<table class="table">
   <tr>
-    <th>Issued</th>
+    <th>Account</th>
     <th>Issued date</th>
     <th></th>
     <th></th>
@@ -11,11 +11,25 @@
 
 <% @invoices.each do |invoice| %>
   <tr>
-    <td><%= invoice.issued %></td>
-    <td><%= invoice.issued_date %></td>
-    <td><%= link_to 'Show', invoice %></td>
-    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-    <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= invoice.account.name %></td>
+    <td><%= invoice.issued_date.to_time.strftime("%m/%d/%Y") %></td>
+    <td>
+      <%= link_to(invoice_path(invoice)) do %>
+          <i class="icon-file"></i>
+          <% end %>
+    </td>
+    <td>
+      <%= link_to(edit_invoice_path(invoice)) do %>
+          <i class="icon-pencil"></i>
+      <% end %>
+    </td>
+    <td>
+      <% unless invoice.issued %>
+          <%= link_to(invoice, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+              <i class="icon-trash"></i>
+          <% end %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

@@ -1,27 +1,93 @@
-<h1>Listing time_entries</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
+    <th>Account</th>
+    <th>Date</th>
     <th>Description</th>
     <th>Hours</th>
-    <th>Date</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
+    <%= form_for(@time_entry) do |f| %>
+        <% if @time_entry.errors.any? %>
+          <tr>
+            <td colspan="5">
+              <div id="error_explanation">
+                <h2><%= pluralize(@time_entry.errors.count, "error") %> prohibited this time_entry from being saved:</h2>
 
-<% @time_entries.each do |time_entry| %>
-  <tr>
+                <ul>
+                  <% @time_entry.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <tr>
+        <td><%= collection_select(:time_entry, :account_id, Account.all, :id, :name) %></td>
+        <td><%= text_field_tag("time_entry[date]", (@time_entry.date.strftime("%m/%d/%Y") rescue nil), :class => 'text_field') %></td>
+        <td><%= f.text_field :description, :class => "input-block-level", :placeholder => "Description" %></td>
+        <td><%= f.text_field :hours, :class => "input-block-level", :placeholder => "Hours" %></td>
+        <td><%= f.submit "Save", :class => "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </table>
+  <table class="table table-striped">
+    <tr>
+      <th>Account</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Hours</th>
+      <th>Invoice</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% if @open_entries.count > 0 %>
+      <tr><th  colspan="7">
+        <h4>Non-Invoiced Time</h4>
+      </th></tr>
+      <tr>
+  <% end %>
+  <% @open_entries.each do |time_entry| %>
+
+        <td><%= time_entry.account.name %></td>
+        <td><%= time_entry.date.to_time.strftime("%m/%d/%Y") %></td>
+        <td><%= time_entry.description %></td>
+        <td><%= time_entry.hours %></td>
+        <td><%= link_to("Create Invoice", new_invoice_path) %></td>
+        <td>
+          <%= link_to(edit_time_entry_path(time_entry)) do %>
+              <i class="icon-pencil"></i>
+          <% end %>
+        </td>
+        <td>
+          <% unless time_entry.invoiced? %>
+              <%= link_to(time_entry, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+                  <i class="icon-trash"></i>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  <% if @invoiced_entries.count > 0 %>
+      <tr><th colspan="7">
+        <h4>Invoiced Time</h4>
+      </th></tr>
+      <tr>
+  <% end %>
+<% @invoiced_entries.each do |time_entry| %>
+  <tr class="muted">
+    <td><%= time_entry.account.name %></td>
+    <td><%= time_entry.date.to_time.strftime("%m/%d/%Y") %></td>
     <td><%= time_entry.description %></td>
     <td><%= time_entry.hours %></td>
-    <td><%= time_entry.date %></td>
-    <td><%= link_to 'Show', time_entry %></td>
-    <td><%= link_to 'Edit', edit_time_entry_path(time_entry) %></td>
-    <td><%= link_to 'Destroy', time_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to("Invoice", invoice_path(time_entry.invoice_id)) %></td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Time entry', new_time_entry_path %>

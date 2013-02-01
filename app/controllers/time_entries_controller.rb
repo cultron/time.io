@@ -2,7 +2,9 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries
   # GET /time_entries.json
   def index
-    @time_entries = TimeEntry.all
+    @invoiced_entries = TimeEntry.invoiced?.find(:all, :order => "date DESC")
+    @open_entries = TimeEntry.invoiced!.find(:all, :order => "date DESC")
+    @time_entry = TimeEntry.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,6 +42,7 @@ class TimeEntriesController < ApplicationController
   # POST /time_entries
   # POST /time_entries.json
   def create
+    params[:time_entry][:date] = Date.strptime(date,"%m/%d/%Y")
     @time_entry = TimeEntry.new(params[:time_entry])
 
     respond_to do |format|
@@ -56,6 +59,8 @@ class TimeEntriesController < ApplicationController
   # PUT /time_entries/1
   # PUT /time_entries/1.json
   def update
+    date = params[:time_entry][:date]
+    params[:time_entry][:date] = Date.strptime(date,"%m/%d/%Y")
     @time_entry = TimeEntry.find(params[:id])
 
     respond_to do |format|

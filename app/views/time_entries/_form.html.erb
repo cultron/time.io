@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :hours %><br />
-    <%= f.number_field :hours %>
+    <%= f.number_field :hours, value: number_with_precision(f.object.hours, precision: 2, :delimitor => '.') %>
   </div>
   <div class="field">
     <%= f.label :date %><br />

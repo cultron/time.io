@@ -1,0 +1,72 @@
+class AddSeedTimeEntries < ActiveRecord::Migration
+  def up
+    TimeEntry.create({:date => DateTime.parse("28/06/2012 00:00"), :hours => ".5", :description => "Conversation with Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("29/06/2012 00:00"), :hours => "1", :description => "Putting together Documentation for Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("06/07/2012 00:00"), :hours => "1", :description => "Debugging Workflow issue for Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("09/07/2012 00:00"), :hours => ".2", :description => "Debugging Workflow issue for Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("11/07/2012 00:00"), :hours => ".2", :description => "Debugging Workflow issue for Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("18/07/2012 00:00"), :hours => "2.5", :description => "JIRA Standalone Setup", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("19/07/2012 00:00"), :hours => "1", :description => "JIRA Standalone Setup", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("19/07/2012 00:00"), :hours => "1", :description => "JIRA Standalone Setup", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("19/07/2012 00:00"), :hours => ".5", :description => "Troubleshooting with Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("20/07/2012 00:00"), :hours => ".5", :description => "Troubleshooting with Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("23/07/2012 00:00"), :hours => "1.5", :description => "JIRA Standalone Setup", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("24/07/2012 00:00"), :hours => "2.5", :description => "JIRA Standalone Setup", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("25/07/2012 00:00"), :hours => "3", :description => "JIRA Setup/Data Import", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("26/07/2012 00:00"), :hours => "2", :description => "JIRA/Confluence Data Import", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("27/07/2012 00:00"), :hours => "1", :description => "JIRA SSL Investigation", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("30/07/2012 00:00"), :hours => "1", :description => "Troubleshooting with Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("31/07/2012 00:00"), :hours => "1", :description => "Troubleshooting with Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("01/08/2012 00:00"), :hours => "2", :description => "Working with Fahad to fix virtual hosting", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("02/08/2012 00:00"), :hours => "2", :description => "Working with Fahad to fix virtual hosting", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("06/08/2012 00:00"), :hours => "5", :description => "Working on fixing the virtual hosting issue", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("09/08/2012 00:00"), :hours => "1.5", :description => "JIRA Data Import with new box", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("10/08/2012 00:00"), :hours => "6", :description => "JIRA/Confluence Data Import and SSL Troubleshooting", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("13/08/2012 00:00"), :hours => "4.5", :description => "Confluence preparation / Full System CutOver", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("14/08/2012 00:00"), :hours => "2", :description => "JIRA CutOver Troubleshooting", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+    TimeEntry.create({:date => DateTime.parse("15/08/2012 00:00"), :hours => ".5", :description => "Mounted Storage move for JIRA / Confluence attachments", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(2)})
+
+    TimeEntry.create({:date => DateTime.parse("16/08/2012 00:00"), :hours => "2", :description => "Server Troubleshooting with Fahad and Peter", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("25/08/2012 00:00"), :hours => "2", :description => "HTTP to HTTPS configuring and testing", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("26/08/2012 00:00"), :hours => "2.5", :description => "Debugging browser \"cannot resolve issue\" and communicating with atlassian", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("31/08/2012 00:00"), :hours => "1.5", :description => "Licensing communication and follow ups", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("13/09/2012 00:00"), :hours => ".5", :description => "Communication with Dan and Peter regarding plugins", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("12/09/2012 00:00"), :hours => "2", :description => "Setting up and testing the confluence content formatting macros", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("14/09/2012 00:00"), :hours => ".2", :description => "Debug Dan's wiki space permission issue", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+    TimeEntry.create({:date => DateTime.parse("15/09/2012 00:00"), :hours => "1", :description => "Reviewed and responded to peter's initial plugin list", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(3)})
+
+    TimeEntry.create({:date => DateTime.parse("22/10/2012 00:00"), :hours => "3", :description => "official.fm player", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("22/10/2012 00:00"), :hours => "2", :description => "troublshooting JIRA issues with Peter and Fahad	", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("23/10/2012 00:00"), :hours => "1.5", :description => "troubleshooting JIRA issues from EC2 outage and working with Atlassian for support", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("23/10/2012 00:00"), :hours => "5", :description => "official.fm player", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("24/10/2012 00:00"), :hours => "1.5", :description => "troubleshooting JIRA issues from EC2 outage and working with Atlassian for support", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("24/10/2012 00:00"), :hours => "5", :description => "official.fm player", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("25/10/2012 00:00"), :hours => "2.5", :description => "troubleshooting JIRA issues from EC2 outage and working with Atlassian for support.  And helping Dan with his Agile Board issue", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("25/10/2012 00:00"), :hours => "6", :description => "official.fm player", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("26/10/2012 00:00"), :hours => "1", :description => "official.fm player", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("26/10/2012 00:00"), :hours => "1.5", :description => "troubleshooting JIRA issues from EC2 outage and working with Atlassian for support", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("08/11/2012 00:00"), :hours => "2", :description => "Troubleshooting and Database migration from latin1 to utf-8 preparation", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("12/11/2012 00:00"), :hours => "1", :description => "Investigating and fixing Confluence CPU spikes", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("15/11/2012 00:00"), :hours => ".5", :description => "clearing up server space", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("20/11/2012 00:00"), :hours => ".5", :description => "JIRA CRM investigation", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("27/11/2012 00:00"), :hours => ".5", :description => "Spotify year in review translation work", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("30/11/2012 00:00"), :hours => "1.5", :description => "Confluence user sync issue investigation", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("10/12/2012 00:00"), :hours => ".5", :description => "Investigation of Currency aggregation reporting", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+    TimeEntry.create({:date => DateTime.parse("13/12/2012 00:00"), :hours => "1.5", :description => "Troubleshoot and fix JIRA notifications and increase JIRA JVM size", :account => Account.find(1), :user => User.find(1), :invoice => Invoice.find(4)})
+
+    TimeEntry.create({:date => DateTime.parse("17/12/2012 00:00"), :hours => "2", :description => "Troubleshooting JIRA notifications", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("17/12/2012 00:00"), :hours => "2", :description => "Investigated custom CRM tool for JIRA", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("01/01/2013 00:00"), :hours => ".5", :description => "Worked on custom gadget for JIRA", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("05/01/2013 00:00"), :hours => "4", :description => "Worked on custom gadget for JIRA", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("09/01/2013 00:00"), :hours => "1", :description => "Investigated EazyBI as a replacement for custom gadget", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("11/01/2013 00:00"), :hours => "1", :description => "clearing up server space", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("13/01/2013 00:00"), :hours => "5", :description => "Setup and testing for EazyBI", :account => Account.find(1), :user => User.find(1)})
+    TimeEntry.create({:date => DateTime.parse("24/01/2013 00:00"), :hours => "4", :description => "Setup and testing for EazyBI", :account => Account.find(1), :user => User.find(1)})
+
+
+
+  end
+
+  def down
+  end
+end
