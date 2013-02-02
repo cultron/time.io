@@ -28,6 +28,7 @@ end
 gem 'jquery-rails'
 gem 'jquery-plugins-rails'
 gem 'devise'
+gem 'pdfkit'
 gem 'pry'
 gem 'pry-rails'
 

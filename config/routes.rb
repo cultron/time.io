@@ -12,7 +12,7 @@ Timesystem::Application.routes.draw do
 
   resources :accounts
 
-  root :to => "users#index"
+  root :to => "time_entries#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
