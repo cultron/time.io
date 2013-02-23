@@ -7,8 +7,12 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.new
 
     respond_to do |format|
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
       format.html # index.html.erb
       format.json { render json: @time_entries }
+      end
     end
   end
 
@@ -18,8 +22,12 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @time_entry }
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
+        format.html # show.html.erb
+        format.json { render json: @time_entry }
+      end
     end
   end
 
@@ -29,8 +37,13 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @time_entry }
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
+        format.html # new.html.erb
+        format.json { render json: @time_entry }
+      end
+
     end
   end
 
@@ -46,6 +59,9 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.new(params[:time_entry])
 
     respond_to do |format|
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
       if @time_entry.save
         format.html { redirect_to @time_entry, notice: 'Time entry was successfully created.' }
         format.json { render json: @time_entry, status: :created, location: @time_entry }
@@ -53,6 +69,8 @@ class TimeEntriesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @time_entry.errors, status: :unprocessable_entity }
       end
+      end
+
     end
   end
 
@@ -64,6 +82,9 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.find(params[:id])
 
     respond_to do |format|
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
       if @time_entry.update_attributes(params[:time_entry])
         format.html { redirect_to @time_entry, notice: 'Time entry was successfully updated.' }
         format.json { head :no_content }
@@ -71,6 +92,8 @@ class TimeEntriesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @time_entry.errors, status: :unprocessable_entity }
       end
+      end
+
     end
   end
 
@@ -81,8 +104,12 @@ class TimeEntriesController < ApplicationController
     @time_entry.destroy
 
     respond_to do |format|
+      if current_user.nil?
+        format.html  redirect_to "/signin"
+      else
       format.html { redirect_to time_entries_url }
       format.json { head :no_content }
+      end
     end
   end
 end
