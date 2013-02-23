@@ -8,7 +8,7 @@ class TimeEntriesController < ApplicationController
 
     respond_to do |format|
       if current_user.nil?
-        format.html  redirect_to "/signin"
+        format.html { redirect_to "/signin" }
       else
       format.html # index.html.erb
       format.json { render json: @time_entries }
@@ -23,7 +23,7 @@ class TimeEntriesController < ApplicationController
 
     respond_to do |format|
       if current_user.nil?
-        format.html  redirect_to "/signin"
+        format.html { redirect_to "/signin" }
       else
         format.html # show.html.erb
         format.json { render json: @time_entry }
