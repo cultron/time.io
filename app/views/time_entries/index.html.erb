@@ -61,7 +61,7 @@
           <% end %>
         </td>
         <td>
-          <% unless time_entry.invoiced? %>
+          <% unless time_entry.invoice_id? %>
               <%= link_to(time_entry, method: :delete, data: { confirm: 'Are you sure?' }) do %>
                   <i class="icon-trash"></i>
               <% end %>
