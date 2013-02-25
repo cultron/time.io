@@ -55,7 +55,7 @@ class TimeEntriesController < ApplicationController
   # POST /time_entries
   # POST /time_entries.json
   def create
-    params[:time_entry][:date] = Date.strptime(date,"%m/%d/%Y")
+    params[:time_entry][:date] = Date.strptime(params[:time_entry][:date],"%m/%d/%Y")
     @time_entry = TimeEntry.new(params[:time_entry])
 
     respond_to do |format|
