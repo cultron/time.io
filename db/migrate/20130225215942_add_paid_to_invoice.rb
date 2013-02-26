@@ -1,5 +1,6 @@
 class AddPaidToInvoice < ActiveRecord::Migration
   def change
-    add_column :invoices, :paid, :boolean
+    change_column :time_entries, :hours, :decimal, :precision => 10, :scale => 2
+    change_column :accounts, :rate, :decimal, :precision => 10, :scale => 2
   end
 end

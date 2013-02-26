@@ -11,33 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201003658) do
+ActiveRecord::Schema.define(:version => 20130225215942) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "contact_name"
     t.string   "contact_email"
-    t.integer  "rate"
-    t.timestamp "creation_date"
-    t.timestamp "created_at",    :null => false
-    t.timestamp "updated_at",    :null => false
+    t.decimal  "rate",          :precision => 10, :scale => 2
+    t.datetime "creation_date"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "invoices", :force => true do |t|
     t.boolean  "issued"
-    t.timestamp "issued_date"
-    t.timestamp "created_at",  :null => false
-    t.timestamp "updated_at",  :null => false
+    t.datetime "issued_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
     t.integer  "account_id"
+    t.boolean  "paid"
   end
 
   create_table "time_entries", :force => true do |t|
     t.text     "description"
-    t.decimal  "hours"
-    t.timestamp "date"
-    t.timestamp "created_at",  :null => false
-    t.timestamp "updated_at",  :null => false
+    t.decimal  "hours",       :precision => 10, :scale => 2
+    t.datetime "date"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.boolean  "invoiced"
     t.integer  "account_id"
     t.integer  "invoice_id"
@@ -48,15 +49,15 @@ ActiveRecord::Schema.define(:version => 20130201003658) do
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
-    t.timestamp "reset_password_sent_at"
-    t.timestamp "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.integer  "sign_in_count",          :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.timestamp "created_at",                             :null => false
-    t.timestamp "updated_at",                             :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

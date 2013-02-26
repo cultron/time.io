@@ -5,6 +5,7 @@ class TimeEntriesController < ApplicationController
     @invoiced_entries = TimeEntry.invoiced?.find(:all, :order => "date DESC")
     @open_entries = TimeEntry.invoiced!.find(:all, :order => "date DESC")
     @time_entry = TimeEntry.new
+    @new_invoice = Invoice.new
 
     respond_to do |format|
       if current_user.nil?
@@ -77,8 +78,8 @@ class TimeEntriesController < ApplicationController
   # PUT /time_entries/1
   # PUT /time_entries/1.json
   def update
-    date = params[:time_entry][:date]
-    params[:time_entry][:date] = Date.strptime(date,"%m/%d/%Y")
+    #date = params[:time_entry][:date]
+    #params[:time_entry][:date] = Date.strptime(date,"%m/%d/%Y")
     @time_entry = TimeEntry.find(params[:id])
 
     respond_to do |format|

@@ -40,7 +40,15 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = Invoice.new(params[:invoice])
+    entries = []
+    params[:invoice].each do |key, value|
+      entries.push(TimeEntry.find(value)) unless value == ""
+    end
+
+    @invoice = Invoice.new()
+    @invoice.time_entries = entries
+    @invoice.user = current_user
+    @invoice.account = entries.first.account
 
     respond_to do |format|
       if @invoice.save

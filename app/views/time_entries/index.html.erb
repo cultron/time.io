@@ -32,6 +32,7 @@
         </tr>
     <% end %>
   </table>
+  <%= form_for(@new_invoice) do |f| %>
   <table class="table table-striped">
     <tr>
       <th>Account</th>
@@ -48,6 +49,7 @@
         </th></tr>
         <tr>
     <% end %>
+
     <% @open_entries.each do |time_entry| %>
 
         <td><%= time_entry.account.name %></td>
@@ -55,7 +57,10 @@
         <td><%= time_entry.description %></td>
         <td><%= time_entry.hours %></td>
         <!--td><%#= link_to("Create Invoice", new_invoice_path) %></td-->
-        <td><%= check_box("invoice", "time_entries", {:class => "checkbox"}, time_entry.id, ""  ) %></td>
+        <td>
+          <%= f.hidden_field(:account_id, :value => time_entry.account_id ) %>
+          <%= check_box("invoice", "time_entry_#{time_entry.id}", {:class => "checkbox"}, time_entry.id, ""  ) %>
+        </td>
         <td>
           <%= link_to(edit_time_entry_path(time_entry)) do %>
               <i class="icon-pencil"></i>
@@ -70,6 +75,7 @@
         </td>
         </tr>
     <% end %>
+
     <% if @invoiced_entries.count > 0 %>
         <tr><th colspan="7">
           <h4>Invoiced Time</h4>
@@ -92,6 +98,7 @@
         </tr>
     <% end %>
   </table>
+  <% end %>
 </div>
 <div class="span3">
   <div class="sidebar-nav sidebar-nav-fixed">
@@ -126,7 +133,7 @@
     </ul>
   </div>
    <div id="action-tab" class="hide">
-     <button type="button" class="btn btn-primary span12"><i class="icon-file"></i>Create Invoice</button>
+     <button type="submit" class="btn btn-primary span12" form="new_invoice"><i class="icon-file"></i>Create Invoice</button>
    </div>
 </div>
 

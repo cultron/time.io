@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :hours %><br />
-    <%= f.number_field :hours, value: number_with_precision(f.object.hours, precision: 2, :delimitor => '.') %>
+    <%= f.text_field :hours, :value => (number_with_precision(f.object.hours, precision: 2) || 0 ) %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+    <%= f.datetime_select :date, :order => [:month, :day, :year] %>
   </div>
   <div class="actions">
     <%= f.submit %>
