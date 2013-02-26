@@ -11,12 +11,17 @@
           padding-bottom: 60px;
           background-color: #f5f5f5;
       }
+      .hide {
+          display: none;
+      }
   </style>
 </head>
 <body>
 <%= render 'application/header' %>
-<div class="container">
-  <%= yield %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <%= yield %>
+  </div>
 </div>
 
 
