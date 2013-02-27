@@ -41,7 +41,14 @@
         <entry file="file://$PROJECT_DIR$/app/views/time_entries/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="29" column="37" selection-start="830" selection-end="830" vertical-scroll-proportion="-18.961538">
-              <folding />
+              <folding>
+                <marker date="1361920419375" expanded="true" signature="102:352" placeholder="..." />
+                <marker date="1361920419375" expanded="true" signature="226:341" placeholder="..." />
+                <marker date="1361920419375" expanded="true" signature="387:470" placeholder="..." />
+                <marker date="1361920419375" expanded="true" signature="492:635" placeholder="..." />
+                <marker date="1361920419375" expanded="true" signature="657:765" placeholder="..." />
+                <marker date="1361920419375" expanded="true" signature="789:818" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,7 +109,7 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="52" selection-end="52" vertical-scroll-proportion="0.043422733">
+            <state line="23" column="21" selection-start="661" selection-end="661" vertical-scroll-proportion="0.49936143">
               <folding />
             </state>
           </provider>
@@ -830,7 +837,14 @@
     <entry file="file://$PROJECT_DIR$/app/views/time_entries/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="37" selection-start="830" selection-end="830" vertical-scroll-proportion="-18.961538">
-          <folding />
+          <folding>
+            <marker date="1361920419375" expanded="true" signature="102:352" placeholder="..." />
+            <marker date="1361920419375" expanded="true" signature="226:341" placeholder="..." />
+            <marker date="1361920419375" expanded="true" signature="387:470" placeholder="..." />
+            <marker date="1361920419375" expanded="true" signature="492:635" placeholder="..." />
+            <marker date="1361920419375" expanded="true" signature="657:765" placeholder="..." />
+            <marker date="1361920419375" expanded="true" signature="789:818" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -886,7 +900,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="52" selection-end="52" vertical-scroll-proportion="0.043422733">
+        <state line="23" column="21" selection-start="661" selection-end="661" vertical-scroll-proportion="0.49936143">
           <folding />
         </state>
       </provider>
