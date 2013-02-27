@@ -2,8 +2,8 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries
   # GET /time_entries.json
   def index
-    @invoiced_entries = TimeEntry.invoiced?.find(:all, :order => "date DESC")
-    @open_entries = TimeEntry.invoiced!.find(:all, :order => "date DESC")
+    @invoiced_entries = TimeEntry.invoiced?.order("date DESC")
+    @open_entries = TimeEntry.invoiced!.order("date DESC")
     @time_entry = TimeEntry.new
     @new_invoice = Invoice.new
 

@@ -1,30 +1,165 @@
-<p id="notice"><%= notice %></p>
+<div class="span8 offset1 well">
+  <p id="notice"><%= notice %></p>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Hours</th>
+      <th></th>
+    </tr>
+    <%= form_for(@time_entry) do |f| %>
+        <% if @time_entry.errors.any? %>
+            <tr>
+              <td colspan="4">
+                <div id="error_explanation">
+                  <h2><%= pluralize(@time_entry.errors.count, "error") %> prohibited this time_entry from being saved:</h2>
 
-<p>
-  <b>Name:</b>
-  <%= @account.name %>
-</p>
+                  <ul>
+                    <% @time_entry.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        <tr>
+          <td><%= text_field_tag("time_entry[date]", (@time_entry.date.strftime("%m/%d/%Y") rescue nil), :class => 'text_field') %></td>
+          <td><%= f.text_field :description, :class => "input-block-level", :placeholder => "Description" %></td>
+          <td><%= f.text_field :hours, :class => "input-block-level", :placeholder => "Hours" %></td>
+          <td>
+            <%= f.hidden_field(:account_id, :value => @account.id ) %>
+            <%= f.submit "Save", :class => "btn btn-primary" %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+  <%= form_for(@new_invoice) do |f| %>
+      <table class="table table-striped">
+        <tr>
+          <th>Account</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Hours</th>
+          <th>Invoice</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% if @open_entries.count > 0 %>
+            <tr><th  colspan="7">
+              <h4>Non-Invoiced Time</h4>
+            </th></tr>
+            <tr>
+        <% end %>
 
-<p>
-  <b>Contact name:</b>
-  <%= @account.contact_name %>
-</p>
+        <% @open_entries.each do |time_entry| %>
 
-<p>
-  <b>Contact email:</b>
-  <%= @account.contact_email %>
-</p>
+            <td><%= time_entry.account.name %></td>
+            <td><%= time_entry.date.to_time.strftime("%m/%d/%Y") %></td>
+            <td><%= time_entry.description %></td>
+            <td><%= time_entry.hours %></td>
+            <!--td><%#= link_to("Create Invoice", new_invoice_path) %></td-->
+            <td>
+              <%= f.hidden_field(:account_id, :value => time_entry.account_id ) %>
+              <%= check_box("invoice", "time_entry_#{time_entry.id}", {:class => "checkbox"}, time_entry.id, ""  ) %>
+            </td>
+            <td>
+              <%= link_to(edit_time_entry_path(time_entry)) do %>
+                  <i class="icon-pencil"></i>
+              <% end %>
+            </td>
+            <td>
+              <% unless time_entry.invoice_id? %>
+                  <%= link_to(time_entry, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+                      <i class="icon-trash"></i>
+                  <% end %>
+              <% end %>
+            </td>
+            </tr>
+        <% end %>
 
-<p>
-  <b>Rate:</b>
-  <%= @account.rate %>
-</p>
+        <% if @invoiced_entries.count > 0 %>
+            <tr><th colspan="7">
+              <h4>Invoiced Time</h4>
+            </th></tr>
+            <tr>
+        <% end %>
+        <% @invoiced_entries.each do |time_entry| %>
+            <tr class="muted">
+              <td><%= time_entry.account.name %></td>
+              <td><%= time_entry.date.to_time.strftime("%m/%d/%Y") %></td>
+              <td><%= time_entry.description %></td>
+              <td><%= time_entry.hours %></td>
+              <td><%= link_to("Invoice", invoice_path(time_entry.invoice_id)) %></td>
+              <td>
 
-<p>
-  <b>Creation date:</b>
-  <%= @account.creation_date %>
-</p>
+              </td>
+              <td>
 
+              </td>
+            </tr>
+        <% end %>
+      </table>
+  <% end %>
+</div>
+<div class="span3">
+  <div class="sidebar-nav sidebar-nav-fixed">
+    <ul class="nav nav-list well" style="padding-top:0px; ">
+      <li class="nav-header btn-success" style="color:white; text-align: center;"><%= @account.name %> <i class="icon-pencil" id="editAccount"></i></li>
+      <li>
+        <ul class="inline">
+          <li>Invoices:</li>
+          <li><%= @account.invoices.count() %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Hours Worked:</li>
+          <li><%= @open_entries.sum("hours") + @invoiced_entries.sum("hours") %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Money Earned:</li>
+          <li><%= TotalMoneyEarned(@invoiced_entries) %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Money Owed:</li>
+          <li><%= TotalMoneyOwed(@open_entries) %></li>
+        </ul>
+      </li>
+      <li class="nav-header btn-success" style="color:white; text-align: center;">Invoices</li>
+      <% Invoice.all.each do |invoice| %>
+          <li><%= link_to "#{invoice.account.name} ##{invoice.id}", invoice_path(invoice) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="action-tab" class="hide">
+    <button type="submit" class="btn btn-primary span12" form="new_invoice"><i class="icon-file"></i>Create Invoice</button>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<script>
+    $('.checkbox').click(function() {
+        // $this will contain a reference to the checkbox
+        if ($(this).is(':checked')) {
+            if($("#action-tab").hasClass("hide"))
+                $("#action-tab").removeClass("hide");
+        } else {
+            var check = false;
+            $(".checkbox").each(function(){
+                if($(this).is(":checked")){
+                    check = true;
+                }
+            })
+            if(check){
+                $("#action-tab").removeClass("hide");
+            } else {
+                $("#action-tab").addClass("hide");
+            }
+
+        }
+    });
+</script>

@@ -119,17 +119,23 @@
       <li>
         <ul class="inline">
           <li>Money Earned:</li>
-          <li><%= TotalMoneyEarned() %></li>
+          <li><%= TotalMoneyEarned(@invoiced_entries) %></li>
         </ul>
       </li>
       <li>
         <ul class="inline">
           <li>Money Owed:</li>
-          <li><%= TotalMoneyOwed() %></li>
+          <li><%= TotalMoneyOwed(@open_entries) %></li>
         </ul>
       </li>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Accounts</li>
+      <% Account.all.each do |account| %>
+          <li><%= link_to account.name, account_path(account) %></li>
+      <% end %>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Invoices</li>
+      <% Invoice.all.each do |invoice| %>
+          <li><%= link_to "#{invoice.account.name} ##{invoice.id}", invoice_path(invoice) %></li>
+      <% end %>
     </ul>
   </div>
    <div id="action-tab" class="hide">

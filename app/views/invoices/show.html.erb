@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class="span11 offset1">
 <div class="row-fluid">
   <div class="span6">
     <div class="row">
@@ -43,16 +44,5 @@
     </tr>
     </table>
 </div>
-<p>
-  <b>Issued:</b>
-  <%= @invoice.issued %>
-</p>
 
-<p>
-  <b>Issued date:</b>
-  <%= @invoice.issued_date %>
-</p>
-
-
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+</div>

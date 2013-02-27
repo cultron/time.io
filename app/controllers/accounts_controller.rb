@@ -14,6 +14,10 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     @account = Account.find(params[:id])
+    @invoiced_entries = TimeEntry.invoiced?.where(:account_id => @account.id).order("date DESC")
+    @open_entries = TimeEntry.invoiced!.where(:account_id => @account.id).order("date DESC")
+    @time_entry = TimeEntry.new
+    @new_invoice = Invoice.new
 
     respond_to do |format|
       format.html # show.html.erb
