@@ -18,6 +18,11 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @invoice }
+      format.pdf do
+        pdf = InvoicePdf.new(@invoice, Invoice)
+        send_data pdf.render, :filename => "#{@invoice.account.name}_#{@invoice.created_at.strftime("%m/%d/%Y")}_Invoice.pdf",
+                  :type => "application/pdf"
+      end
     end
   end
 

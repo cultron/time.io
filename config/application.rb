@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'pdfkit'
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -18,7 +18,10 @@ module Timesystem
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-
+    config.gem "pdf-reader", :lib => "pdf/reader"
+    config.gem "Ascii85", :lib => "ascii85"
+    config.autoload_paths << "#{Rails.root}/vendor/prawn/lib"
+    config.autoload_paths << "#{Rails.root}/app/reports"
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -33,10 +36,6 @@ module Timesystem
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    # options will be passed to PDFKit.new
-    config.middleware.use PDFKit::Middleware, :print_media_type => true
-    config.middleware.use PDFKit::Middleware, {}, :except => ['/secret']
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -71,5 +70,5 @@ module Timesystem
       # g.test_framework  :rspec
       # g.orm             :mongoid
     end
-  end
+   end
 end
