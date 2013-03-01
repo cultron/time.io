@@ -28,10 +28,10 @@ class InvoicePdf < Prawn::Document
   end
 
   def header_info
-    [["Matt Cullerton","Invoice #{Time.now.strftime("%m/%d/%Y")}"],
+    [["Matt Cullerton","Invoice #{@invoice.created_at.strftime("%m/%d/%Y")}"],
      ["1026 Glen Arbor Dr.", "Please make all checks"],
      ["Encinitas, CA 92024", "payable to Matt Cullerton"],
-     ["Phone: (703) 795-1529", "Date Issued: #{Time.now.strftime("%m/%d/%Y")}"],
+     ["Phone: (703) 795-1529", "Date Issued: #{@invoice.created_at.strftime("%m/%d/%Y")}"],
      ["",""],
      ["Company: #{@invoice.account.name}",""],
      ["Contact: #{@invoice.account.contact_name} #{@invoice.account.contact_email}",""]

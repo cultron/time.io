@@ -11,9 +11,7 @@
           <a class="brand" href="/">Time.io</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              <%= link_to destroy_user_session_path, :method => :delete do %>
-                <button type="button" class="btn btn-danger">Logout</button>
-              <% end %>
+              <%= link_to "Logout", destroy_user_session_path, :method => :delete, :style => "text-decoration: none;" %>
             </p>
             <ul class="nav">
               <li class="dropdown">

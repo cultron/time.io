@@ -134,7 +134,7 @@
       <% end %>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Invoices</li>
       <% Invoice.all.each do |invoice| %>
-          <li><%= link_to "#{invoice.account.name} ##{invoice.id}", invoice_path(invoice) %></li>
+          <li><%= link_to "#{invoice.created_at.strftime("%m/%d/%Y")} #{invoice.account.name} Invoice", invoice_path(invoice) %></li>
       <% end %>
     </ul>
   </div>
