@@ -47,7 +47,9 @@ class InvoicesController < ApplicationController
   def create
     entries = []
     params[:invoice].each do |key, value|
-      entries.push(TimeEntry.find(value)) unless value == ""
+      if key.include? "time_entry"
+        entries.push(TimeEntry.find(value)) unless value == ""
+      end
     end
 
     @invoice = Invoice.new()

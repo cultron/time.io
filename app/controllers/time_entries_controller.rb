@@ -64,7 +64,7 @@ class TimeEntriesController < ApplicationController
         format.html  redirect_to "/signin"
       else
       if @time_entry.save
-        format.html { redirect_to @time_entry, notice: 'Time entry was successfully created.' }
+        format.html { redirect_to :back, notice: 'Time entry was successfully created.' }
         format.json { render json: @time_entry, status: :created, location: @time_entry }
       else
         format.html { render action: "new" }
