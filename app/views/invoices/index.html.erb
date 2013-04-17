@@ -1,39 +1,107 @@
-<h1>Invoices</h1>
+<div class="span8 offset1 well">
+  <p id="notice" xmlns="http://www.w3.org/1999/html"><%= notice %></p>
+  <div class="row" style="padding-left: 2em;">
 
-<table class="table">
-  <tr>
-    <th>Account</th>
-    <th>Issued date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <% years = TimeEntry.invoiced?.collect{|c| c.date.year}.uniq  %>
+    <div class="span2">
+      <ul class="unstyled">
+        <li><h4>Year</h4></li>
+        <li>Hours Worked</li>
+        <li>Money Earned</li>
+      </ul>
+    </div>
+    <% years.each do |year| %>
+        <% nextyear = "#{year + 1}-01-01 00:00:00" %>
+        <% time_entries = Invoice.where(:paid => true).collect{|c| (c.time_entries)}.flatten.find_all{|i| i.date < nextyear} %>
+        <div class="span2">
+          <ul class="unstyled">
+            <li><h4><%= year %></h4></li>
+            <li><%= time_entries.collect(&:hours).inject(:+).to_s %></li>
+            <li><%= "$#{time_entries.collect(&:hours).zip(time_entries.collect(&:account)).map{|h,r| h*r.rate}.inject(:+).to_s}" %></li>
+          </ul>
+        </div>
+    <% end %>
 
-<% @invoices.each do |invoice| %>
-  <tr>
-    <td><%= invoice.account.name %></td>
-    <td><%= invoice.issued_date.to_time.strftime("%m/%d/%Y") %></td>
-    <td>
-      <%= link_to(invoice_path(invoice)) do %>
-          <i class="icon-file"></i>
-          <% end %>
-    </td>
-    <td>
-      <%= link_to(edit_invoice_path(invoice)) do %>
-          <i class="icon-pencil"></i>
+  </div>
+  <% @invoices.each_slice(4) do |invoices| %>
+      <div class="row">
+   <ul class="inline">
+    <% invoices.each do |invoice| %>
+        <li class="span3">
+          <div class="well">
+            <h2><%= invoice.account.name %></h2>
+            <ul class="unstyled">
+              <li>
+                <ul class="inline">
+                  <li>Date:</li><li><%= invoice.created_at.to_time.strftime("%m/%d/%Y") %></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="inline">
+                  <li>Hours:</li><li><%= invoice.hours %></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="inline">
+                  <li>Amount:</li><li><%= invoice.amount %></li>
+                </ul>
+              </li>
+              <li>
+                <% if !invoice.paid %>
+                   <%= form_for(invoice) do |f| %>
+                    <%=  f.hidden_field :paid, :value => true %>
+                    <button class="btn btn-success" type="submit">Pay</button>
+                   <% end %>
+                <% else %>
+                    <button class="btn btn-primary disabled" type="button">Paid</button>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </li>
+    <% end %>
+   </ul>               </div>
+  <% end %>
+</div>
+<div class="span3">
+  <div class="sidebar-nav sidebar-nav-fixed">
+    <ul class="nav nav-list well" style="padding-top:0px; ">
+      <li class="nav-header btn-success" style="color:white; text-align: center;">Time.io Statistics</li>
+      <li>
+        <ul class="inline">
+          <li>Invoices:</li>
+          <li><%= Invoice.all.count() %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Hours Worked:</li>
+          <li><%= TimeEntry.sum("hours") %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Money Paid:</li>
+          <li><%= "$#{Invoice.where(:paid => true).collect{|c| (c.time_entries.sum(:hours) * c.account.rate)}.sum().to_s}" %></li>
+        </ul>
+      </li>
+      <li>
+        <ul class="inline">
+          <li>Money Owed:</li>
+          <li><%= "$#{Invoice.where(:paid => nil).collect{|c| (c.time_entries.sum(:hours) * c.account.rate)}.sum().to_s}" %></li>
+        </ul>
+      </li>
+      <li class="nav-header btn-success" style="color:white; text-align: center;">Accounts</li>
+      <% Account.all.each do |account| %>
+          <li><%= link_to account.name, account_path(account) %></li>
       <% end %>
-    </td>
-    <td>
-      <% unless invoice.issued %>
-          <%= link_to(invoice, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-              <i class="icon-trash"></i>
-          <% end %>
+      <li class="nav-header btn-success" style="color:white; text-align: center;">Invoices</li>
+      <% Invoice.all.each do |invoice| %>
+          <li><%= link_to "#{invoice.created_at.strftime("%m/%d/%Y")} #{invoice.account.name} Invoice", invoice_path(invoice) %></li>
       <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Invoice', new_invoice_path %>
+    </ul>
+  </div>
+  <div id="action-tab" class="hide">
+    <button type="submit" class="btn btn-primary span12" form="new_invoice"><i class="icon-file"></i>Create Invoice</button>
+  </div>
+</div>
