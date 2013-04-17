@@ -105,29 +105,7 @@
   <div class="sidebar-nav sidebar-nav-fixed">
     <ul class="nav nav-list well" style="padding-top:0px; ">
       <li class="nav-header btn-success" style="color:white; text-align: center;">Time.io Statistics</li>
-      <li>
-        <ul class="inline">
-          <li>Invoices:</li>
-          <li><%= Invoice.all.count() %></li>
-        </ul>
-      </li>
-      <li>
-        <ul class="inline">
-          <li>Hours Worked:</li>
-          <li><%= TimeEntry.sum("hours") %></li>
-        </ul>
-      </li>
-      <li>
-        <ul class="inline">
-          <li>Money Earned:</li>
-          <li><%= TotalMoneyEarned(@invoiced_entries) %></li>
-        </ul>
-      </li>
-      <li>
-        <ul class="inline">
-          <li>Money Owed:</li>
-          <li><%= TotalMoneyOwed(@open_entries) %></li>
-        </ul>
+      <%= render 'application/stats' %>
       </li>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Accounts</li>
       <% Account.all.each do |account| %>

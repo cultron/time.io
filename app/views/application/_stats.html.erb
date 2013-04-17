@@ -1,0 +1,32 @@
+<li>
+  <ul class="inline">
+    <li>Invoices:</li>
+    <li><%= Invoice.all.count() %></li>
+  </ul>
+</li>
+<li>
+  <ul class="inline">
+    <li>Hours Worked:</li>
+    <li><%= TimeEntry.sum("hours") %></li>
+  </ul>
+</li>
+<li>
+  <ul class="inline">
+    <li>Money Paid:</li>
+    <li><%= "$#{Invoice.where(:paid => true).collect{|c| (c.time_entries.sum(:hours) * c.account.rate)}.sum().to_s}" %></li>
+  </ul>
+</li>
+<li>
+  <ul class="inline">
+    <li>Money Owed:</li>
+    <li><%= "$#{Invoice.where(:paid => nil).collect{|c| (c.time_entries.sum(:hours) * c.account.rate)}.sum().to_s}" %></li>
+  </ul>
+</li>
+<li>
+  <ul class="inline">
+    <li>Non-Invoiced Money:</li>
+    <li>
+      <%= TimeEntry.invoiced!.count > 0 ? "$#{TimeEntry.invoiced!.collect(&:hours).zip(TimeEntry.invoiced!.collect(&:account)).map{|h,r| h*r.rate}.inject(:+).to_s}" : "$0" %>
+    </li>
+  </ul>
+</li>

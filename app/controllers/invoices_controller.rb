@@ -75,7 +75,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
-        format.html { redirect_to action: "index" }
+        format.html { redirect_to :back, notice: "Invoice #{@invoice.id} has been paid!" }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
