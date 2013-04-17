@@ -58,8 +58,9 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="43" selection-start="147" selection-end="147" vertical-scroll-proportion="0.044155844">
+            <state line="14" column="8" selection-start="480" selection-end="480" vertical-scroll-proportion="0.3090909">
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#5;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -861,8 +862,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="43" selection-start="147" selection-end="147" vertical-scroll-proportion="0.044155844">
+        <state line="14" column="8" selection-start="480" selection-end="480" vertical-scroll-proportion="0.3090909">
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#5;n#ul#0;n#div#0;n#div#1;n#!!top" expanded="true" />
