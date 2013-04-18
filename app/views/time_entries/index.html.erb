@@ -1,5 +1,6 @@
 <div class="span8 offset1 well">
   <p id="notice" xmlns="http://www.w3.org/1999/html"><%= notice %></p>
+  <% if @accounts.count > 0 %>
   <table class="table table-striped">
     <tr>
       <th>Account</th>
@@ -25,7 +26,7 @@
             </tr>
         <% end %>
         <tr>
-          <td><%= collection_select(:time_entry, :account_id, Account.all, :id, :name) %></td>
+          <td><%= collection_select(:time_entry, :account_id, @accounts, :id, :name) %></td>
           <td><%= text_field_tag("time_entry[date]", (@time_entry.date.strftime("%m/%d/%Y") rescue nil), :class => 'text_field') %></td>
           <td><%= f.text_field :description, :class => "input-block-level", :placeholder => "Description" %></td>
           <td><%= f.text_field :hours, :class => "input-block-level", :placeholder => "Hours" %></td>
@@ -100,6 +101,11 @@
     <% end %>
   </table>
   <% end %>
+          <% else %>
+          <%= link_to new_account_path do  %>
+              <button class="btn btn-large btn-info span12" type="button">Create a new Account</button>
+          <% end %>
+    <% end %>
 </div>
 <div class="span3">
   <div class="sidebar-nav sidebar-nav-fixed">
@@ -108,11 +114,11 @@
       <%= render 'application/stats' %>
       </li>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Accounts</li>
-      <% Account.all.each do |account| %>
+      <% @accounts.each do |account| %>
           <li><%= link_to account.name, account_path(account) %></li>
       <% end %>
       <li class="nav-header btn-success" style="color:white; text-align: center;">Invoices</li>
-      <% Invoice.all.each do |invoice| %>
+      <% @invoices.each do |invoice| %>
           <li><%= link_to "#{invoice.created_at.strftime("%m/%d/%Y")} #{invoice.account.name} Invoice", invoice_path(invoice) %></li>
       <% end %>
     </ul>

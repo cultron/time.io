@@ -1,9 +1,12 @@
 class TimeEntriesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /time_entries
   # GET /time_entries.json
   def index
-    @invoiced_entries = TimeEntry.invoiced?.order("date DESC")
-    @open_entries = TimeEntry.invoiced!.order("date DESC")
+    @invoiced_entries = @time_entries.invoiced?.order("date DESC")
+    @open_entries = @time_entries.invoiced!.order("date DESC")
     @time_entry = TimeEntry.new
     @new_invoice = Invoice.new
 

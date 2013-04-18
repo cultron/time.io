@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
 
   has_many :invoices
   has_many :time_entries
+  has_many :user_account
+  has_many :accounts, :through => :user_account
 end

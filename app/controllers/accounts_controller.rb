@@ -1,8 +1,10 @@
 class AccountsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,15 +15,20 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
-    @account = Account.find(params[:id])
-    @invoiced_entries = TimeEntry.invoiced?.where(:account_id => @account.id).order("date DESC")
-    @open_entries = TimeEntry.invoiced!.where(:account_id => @account.id).order("date DESC")
+    @account = @accounts.find(params[:id])
+    @invoiced_entries = @time_entries.invoiced?.where(:account_id => @account.id).order("date DESC")
+    @open_entries = @time_entries.invoiced!.where(:account_id => @account.id).order("date DESC")
     @time_entry = TimeEntry.new
     @new_invoice = Invoice.new
-
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @account }
+      if !@account.nil?
+        format.html # show.html.erb
+        format.json { render json: @account }
+      else
+        format.html { redirect_to :action => "index" }
+        format.json { render json: @account.errors, status: :unprocessable_entity }
+      end
+
     end
   end
 
@@ -38,16 +45,25 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
-    @account = Account.find(params[:id])
+    @account = @accounts.find(params[:id])
+    respond_to do |format|
+      if !@account.nil?
+        format.html # edit.html.erb
+      else
+        format.html { redirect_to :action => "index" }
+        format.json { render json: @account.errors, status: :unprocessable_entity }
+      end
+
+    end
   end
 
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = Account.new(params[:account])
 
+    @account = Account.new(params[:account])
     respond_to do |format|
-      if @account.save
+      if @account.save && UserAccount.create({"user_id" => current_user.id, "account_id" => @account.id})
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render json: @account, status: :created, location: @account }
       else
@@ -60,10 +76,10 @@ class AccountsController < ApplicationController
   # PUT /accounts/1
   # PUT /accounts/1.json
   def update
-    @account = Account.find(params[:id])
+    @account = @accounts.find(params[:id])
 
     respond_to do |format|
-      if @account.update_attributes(params[:account])
+      if !@account.nil? && @account.update_attributes(params[:account])
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else

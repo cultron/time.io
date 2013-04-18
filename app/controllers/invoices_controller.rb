@@ -1,8 +1,10 @@
 class InvoicesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.order("created_at ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,13 +18,19 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @invoice }
-      format.pdf do
-        pdf = InvoicePdf.new(@invoice, Invoice)
-        send_data pdf.render, :filename => "#{@invoice.account.name}_#{@invoice.created_at.strftime("%m/%d/%Y")}_Invoice.pdf",
-                  :type => "application/pdf"
+      if @invoice.user == current_user
+        format.html # show.html.erb
+        format.json { render json: @invoice }
+        format.pdf do
+          pdf = InvoicePdf.new(@invoice, Invoice)
+          send_data pdf.render, :filename => "#{@invoice.account.name}_#{@invoice.created_at.strftime("%m/%d/%Y")}_Invoice.pdf",
+                    :type => "application/pdf"
+        end
+      else
+        format.html { redirect_to :action => "index" }
+        format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
