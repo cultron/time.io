@@ -6,18 +6,24 @@
     <div class="span2">
       <ul class="unstyled">
         <li><h4>Year</h4></li>
-        <li>Hours Worked</li>
+        <li>Hours Paid</li>
         <li>Money Earned</li>
+        <li>Hours Unpaid</li>
+        <li>Money Owed</li>
       </ul>
     </div>
     <% years.each do |year| %>
+        <% curryear = "#{year}-01-01 00:00:00" %>
         <% nextyear = "#{year + 1}-01-01 00:00:00" %>
-        <% time_entries = @invoices.where(:paid => true).collect{|c| (c.time_entries)}.flatten.find_all{|i| i.date < nextyear.to_date} %>
+        <% paidtime = @invoices.where(:paid => true).collect{|c| (c.time_entries)}.flatten.find_all{|i| i.date >= curryear.to_date && i.date < nextyear.to_date} %>
+        <% unpaidtime = (@invoices.where(:paid => nil).collect{|c| (c.time_entries)}.flatten + @time_entries.invoiced!).find_all{|i| i.date >= curryear.to_date && i.date < nextyear.to_date} %>
         <div class="span2">
           <ul class="unstyled">
             <li><h4><%= year %></h4></li>
-            <li><%= time_entries.collect(&:hours).inject(:+).to_s %></li>
-            <li><%= "$#{time_entries.collect(&:hours).zip(time_entries.collect(&:account)).map{|h,r| h*r.rate}.inject(:+).to_s}" %></li>
+            <li><%= paidtime.collect(&:hours).inject(:+).to_s %></li>
+            <li><%= "$#{paidtime.collect(&:hours).zip(paidtime.collect(&:account)).map{|h,r| h*r.rate}.inject(:+).to_s}" %></li>
+            <li><%= unpaidtime.collect(&:hours).inject(:+).to_s %></li>
+            <li><%= "$#{unpaidtime.collect(&:hours).zip(unpaidtime.collect(&:account)).map{|h,r| h*r.rate}.inject(:+).to_s}" %></li>
           </ul>
         </div>
     <% end %>
