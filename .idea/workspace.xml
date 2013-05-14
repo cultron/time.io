@@ -38,7 +38,21 @@
         <entry file="file://$PROJECT_DIR$/app/views/time_entries/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="4656" vertical-scroll-proportion="-0.0">
-              <folding />
+              <folding>
+                <marker date="1366311023743" expanded="true" signature="109:3653" placeholder="if ... end" />
+                <marker date="1366311023743" expanded="true" signature="329:1425" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="350:867" placeholder="if ... end" />
+                <marker date="1366311023743" expanded="true" signature="682:764" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="1469:3448" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="1689:1828" placeholder="if ... end" />
+                <marker date="1366311023743" expanded="true" signature="2447:2511" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="2555:2770" placeholder="unless ... end" />
+                <marker date="1366311023743" expanded="true" signature="2679:2750" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="2824:2962" placeholder="if ... end" />
+                <marker date="1366311023743" expanded="true" signature="3512:3639" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="4069:4167" placeholder="do ... end" />
+                <marker date="1366311023743" expanded="true" signature="4291:4453" placeholder="do ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,7 +70,10 @@
         <entry file="file://$PROJECT_DIR$/app/views/accounts/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="2" column="2" selection-start="106" selection-end="106" vertical-scroll-proportion="-1.3076923">
-              <folding />
+              <folding>
+                <marker date="1366311868433" expanded="true" signature="563:661" placeholder="do ... end" />
+                <marker date="1366311868433" expanded="true" signature="785:947" placeholder="do ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -856,7 +873,10 @@
     <entry file="file://$PROJECT_DIR$/app/views/accounts/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="2" selection-start="106" selection-end="106" vertical-scroll-proportion="-1.3076923">
-          <folding />
+          <folding>
+            <marker date="1366311868433" expanded="true" signature="563:661" placeholder="do ... end" />
+            <marker date="1366311868433" expanded="true" signature="785:947" placeholder="do ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -884,7 +904,21 @@
     <entry file="file://$PROJECT_DIR$/app/views/time_entries/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="4656" vertical-scroll-proportion="-0.0">
-          <folding />
+          <folding>
+            <marker date="1366311023743" expanded="true" signature="109:3653" placeholder="if ... end" />
+            <marker date="1366311023743" expanded="true" signature="329:1425" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="350:867" placeholder="if ... end" />
+            <marker date="1366311023743" expanded="true" signature="682:764" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="1469:3448" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="1689:1828" placeholder="if ... end" />
+            <marker date="1366311023743" expanded="true" signature="2447:2511" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="2555:2770" placeholder="unless ... end" />
+            <marker date="1366311023743" expanded="true" signature="2679:2750" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="2824:2962" placeholder="if ... end" />
+            <marker date="1366311023743" expanded="true" signature="3512:3639" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="4069:4167" placeholder="do ... end" />
+            <marker date="1366311023743" expanded="true" signature="4291:4453" placeholder="do ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
